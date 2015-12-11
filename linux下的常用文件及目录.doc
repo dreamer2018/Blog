@@ -76,8 +76,8 @@ Linux 常见文件及目录（运维人员必看）
 　　　里面的每个文件都为 xinetd 指定一个要管理的特点服务/etc/ssh/
 　　　存储 SSH 服务配置文件
 /usr/
-/usr/share/doc/
-各软件设计者的文档
+　　　/usr/share/doc/
+　　　各软件设计者的文档
 /proc/
-/proc/sys/
-存储内核运行的参数
+　　　/proc/sys/
+　　　存储内核运行的参数
