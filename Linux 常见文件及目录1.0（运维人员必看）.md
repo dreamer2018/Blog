@@ -45,13 +45,13 @@
 		  /usr 包含所有的命令、程序库、文档和其它文件。这些文件在正常操作中不会被改变的。这个目录也包含你的Linux发行版本的主要的应用程序，譬如，Netscape。文件系统包含所有命令、库、man页和其他一般操作中所需的不改变的文件。 /usr不应该有一般使用中要修改的文件。这样允许此文件系统中的文件通过网络共享，这样可以更有效，因为这样节省了磁盘空间(/usr 很容易是数百兆)，且易于管理(当升级应用时，只有主/usr需要改变，而无须改变每台机器)即使此文件系统在本地盘上，也可以只读mount，以减少系统崩溃时文件系统的损坏。/usr文件系统 /usr 文件系统经常很大，因为所有程序安装在这里。 /usr 里的所有文件一般来自Linux distribution；本地安装的程序和其他东西在/usr/local 下。这样可能在升级新版系统或新distribution时无须重新安装全部程序。 
 		12. /var
 		  /vre包含在正常操作中被改变的文件：假脱机文件、记录文件、加锁文件、临时文件和页格式化文件等。文件系统包含会改变的文件，比如spool目录(mail、news、打印机等用的)， log文件、formatted manual pages和暂存文件。	
-		  13. /boot
+		14. /boot
 		    /boot 引导加载器(bootstrap loader)使用的文件，如LILO。核心映象也经常在这里，而不是在根目录。如果有许多核心映象，这个目录可能变得很大，这时可能使用单独的文件系统更好。另一个理由是要确保核心映象必须在IDE硬盘的前1024柱面内。当计算机启动时（如果有多个操作系统，有可能允许你选择启动哪一个操作系统），这些文件首先被装载。这个目录也会包含LINUX核（压缩文件 vmlinuz），但LINUX核也可以存在别处，只要配置LILO并且LILO知道LINUX核在哪儿。 有东西曾在 /usr 下的某个地方，但这样/usr就不可能只读安装了。
-		13. /home
+		15. /home
 		  /home 包含用户的文件：参数设置文件、个性化文件、文档、数据、EMAIL、缓存数据等。这个目录在系统省级时应该保留。文件系统包含用户家目录，即系统上的所有实际数据。一个大的/home 可能要分为若干文件系统，需要在/home 下加一级名字，如/home/student、/home/staff 等。 
-		14. /proc
+		16. /proc
 		  /proc整个包含虚幻的文件。它们实际上并不存在磁盘上，也不占用任何空间。（用 ls –l 可以显示它们的大小）当查看这些文件时，实际上是在访问存在内存中的信息，这些信息用于访问系统。该文件系统是一个假的文件系统。它不存在在磁盘某个磁盘上。而是由核心在内存中产生。用于提供关于系统的信息(originally about processes, hence the name)。 根文件系统：根文件系统一般应该比较小，因为它包括严格的文件和一些小的不经常改变的文件系统，不容易损坏。损坏的根文件系统一般意味着系统无法引导，除非用特定的方法(例如从软盘)。根目录一般不含任何文件，除了可能的标准的系统引导映象，通常叫/vmlinuz 。所有其他文件在根文件系统的子目录中。
-	 15. /opt
+	   17. /opt
 	   /opt 可选的应用程序，譬如，REDHAT 5.2下的KDE （REDHAT 6.0下，KDE放在其它的X-WINDOWS应用程序中，主执行程序在/usr/bin目录下 /lost+found：在文件系统修复时恢复的文件。	
 
  
@@ -108,9 +108,11 @@
 		/etc/postfix/transport	      在需要转发邮件的情况下很有用
 		/etc/postfix/virtrual	      将电子邮件转发给本地系统上的用户账户
 		/etc/postfix/main.cf	      Postfix 主要配置/etc/sysconfig/目录　
-	/etc/sysconfig/network-scripts/	  存储关于网络配置的脚本文件
+	/etc/sysconfig/
+		/etc/sysconfig/network-scripts/	  存储关于网络配置的脚本文件
 	/etc/rcn.d/	              开机时被自动执行的脚本
-	/etc/yum/pluginconf.d/	  关于 yum 文件的配置
+	/etc/yum/
+		/etc/yum/pluginconf.d/	  关于 yum 文件的配置
 	/etc/yum.repos.d/		  里面的配置文件用来连接系统和实际库
 	/etc/skel/			      包含新账户的默认环境文件
 	/etc/profile.d/		      用来包含/etc/profile 文件要执行的脚本
@@ -129,7 +131,6 @@
 	/etc/termcap    终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。这样，多数的程序可以在多数终端上运行。              
 
 ####/usr/
-	
 	/usr是个很重要的目录，通常这一文件系统很大，因为所有程序安装在这里。/usr里的所有文件一般来自linux发行版(distribution)；本地安装的程序和其他东西在/usr/local 下，因为这样可以在升级新版系统或新发行版时无须重新安装全部程序。/usr 目录下的许多内容是可选的，但这些功能会使用户使用系统更加有效。/usr可容纳许多大型的软件包和它们的配置文件。下面列出一些重要的目录(一些不太重要的目录被省略了)。   
 	/usr/x11r6       包含Xwindow系统的所有可执行程序、配置文件和支持文件。为简化x的开发和安装，x的文件没有集成到系统中。Xwindow系统是一个功能强大的图形环境，提供了大量的图形工具程序。用户如果对microsoft windows或machintosh比较熟悉的话，就不会对Xwindow系统感到束手无策了。   
 	/usr/x386        类似/usr/x 11r6，但是是专门给x11 release 5的。   
@@ -141,15 +142,15 @@
 	/usr/local       本地安装的软件和其他文件放在这里。这与/ u s r很相似。用户可能会在这发现一些比较大的软件包，如tex，emacs等。   
 	/usr/share/doc/	 各软件设计者的文档
 	/usr/x11r6 存放x window的目录   
-			/usr/bin 众多的应用程序   
-			/usr/sbin 超级用户的一些管理程序   
-			/usr/doc linux文档   
-			/usr/include linux下开发和编译应用程序所需要的头文件   
-			/usr/lib 常用的动态链接库和软件包的配置文件   
-			/usr/man 帮助文档   
-			/usr/src 源代码，linux内核的源代码就放在/usr/src/linux里   
-			/usr/local/bin 本地增加的命令   
-			/usr/local/lib 本地增加的库根文件系统   
+		/usr/bin 众多的应用程序   
+		/usr/sbin 超级用户的一些管理程序   
+		/usr/doc linux文档   
+		/usr/include linux下开发和编译应用程序所需要的头文件   
+		/usr/lib 常用的动态链接库和软件包的配置文件   
+		/usr/man 帮助文档   
+		/usr/src 源代码，linux内核的源代码就放在/usr/src/linux里   
+		/usr/local/bin 本地增加的命令   
+		/usr/local/lib 本地增加的库根文件系统   
 ####/dev/文件系统   
 	/dev 目录包括所有设备的设备文件。设备文件用特定的约定命名，这在设备列表中说明。设备文件在安装时由系统产生，以后可以用/dev/makedev 描述。
 	/dev/makedev.local   系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准makedev 的一部分)。
@@ -201,5 +202,5 @@
 	/proc/stat      系统的不同状态，例如，系统启动后页面发生错误的次数。   
 	/proc/uptime    系统启动的时间长度。   
 	/proc/version   核心版本。 /etc目录 /etc 目录包含很多文件。许多网络配置文件也在/etc 中。 
-	/proc/sys/		存储内核运行的参数�置文件也在/etc 中。 
+	/proc/sys/		存储内核运行的参数c 中。 
 	/proc/sys/		存储内核运行的参数�数
