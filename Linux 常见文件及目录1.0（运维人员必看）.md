@@ -97,8 +97,10 @@
 	/etc/motd          motd是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。常用于通告信息，如计划关机时间的警告等。
 	/etc/mtab        当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由mount 命令自动更新。当需要一个当前安装的文件系统的列表时使用(例如df 命令)。
 	/etc/nsswitch.conf 	         定义了从认证到名称服务器的所有内容的的数据库搜索条目 详见：http://wPostfix维护与管理技巧ww.cnblogs.com/cute/archive/2012/05/17/2506342.html
-	/etc/openldap/ldap.conf	    LDAP 配置拓展 	
-	/etc/opendap/slapd.conf 	LDAP服务器的主配置文件
+	/etc/openldap/
+		/etc/openldap/ldap.conf	    LDAP 配置拓展 	
+	/etc/opendap/
+		/etc/opendap/slapd.conf 	LDAP服务器的主配置文件
    	/etc/pam_ldap.conf		    LDAP 客户配置
 	/etc/passwd	  用户的基本信息，包括用户的用户名，UID,GID,用户信息说明,用户的主文件夹，用户的Shell等信息
 	/etc/profile	此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置. 
