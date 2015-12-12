@@ -1,4 +1,4 @@
-Linux 常见文件及目录（运维人员必看）
+Linux 常见文件及目录1.0（运维人员必看）
 基于 RHEL6
 
 /etc/ 系统主要的配置文件存放目录
@@ -43,10 +43,10 @@ Linux 常见文件及目录（运维人员必看）
 　　　/etc/init/rcS.conf	在引导过程中执行/etc/rd.d/rc.sysinit 脚本
 　　　/etc/init/rcS-sulogin.conf	在单用户模式下启动使用一个终端
 　　　/etc/init/rc.conf	在运行时执行脚本,被执行的脚本保存在/etc/rcn.d/目录中
-　　　/etc/inittab	定义默认运行级
+　　　/etc/inittab	itit的配置文件，init根据/etc/inittab配置文件来执行相应的脚本进行系统初始化,如设置键盘、字体,装载模块,设置网络等。
 　　　/etc/hosts.allow	TCP包装器的同意列表
-　　　/etc/hosts.denyTCP 	包装器的拒绝列表
-　　　/etc/sysctl.conf		系统控制
+　　　/etc/hosts.deny	TCP包装器的拒绝列表，关于/etc/hosts.allow 和 /etc/hosts.deny 参见 http://blog.sina.com.cn/s/blog_53da0ca70101dewe.html
+　　　/etc/sysctl.conf 	一个允许改变正在运行中的Linux系统的接口，它包含一些TCP/IP堆栈和虚拟内存系统的高级选项，修改内核参数永久生效。也就是说/proc/sys下内核文件与配置文件sysctl.conf中变量存在着对应关系。
 　　　/etc/postfix.canonical
 　　　/etc/postfix.generic	作用类似别名文件
 　　　/etc/postfix/relocated	包含外部网络用户的信息
