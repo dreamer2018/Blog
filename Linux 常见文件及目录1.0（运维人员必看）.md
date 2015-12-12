@@ -54,149 +54,147 @@
 		10. /mnt目录   
 		/mnt目录是系统管理员临时安装(mount )文件系统的安装点。程序并不自动支持安装到 /mnt 。/mnt 下面可以分为许多子目录，例如/mnt/dosa 可能是使用msdos文件系统的软驱，而/mnt/exta 可能是使用ext2文件系统的软驱，/mnt/cdrom 光驱等等。   
 		11. /usr：包含所有的命令、程序库、文档和其它文件。这些文件在正常操作中不会被改变的。这个目录也包含你的Linux发行版本的主要的应用程序，譬如，Netscape。文件系统包含所有命令、库、man页和其他一般操作中所需的不改变的文件。 /usr不应该有一般使用中要修改的文件。这样允许此文件系统中的文件通过网络共享，这样可以更有效，因为这样节省了磁盘空间(/usr 很容易是数百兆)，且易于管理(当升级应用时，只有主/usr需要改变，而无须改变每台机器)即使此文件系统在本地盘上，也可以只读mount，以减少系统崩溃时文件系统的损坏。/usr文件系统 /usr 文件系统经常很大，因为所有程序安装在这里。 /usr 里的所有文件一般来自Linux distribution；本地安装的程序和其他东西在/usr/local 下。这样可能在升级新版系统或新distribution时无须重新安装全部程序。 
-		12. /usr/X11R6：X Window系统的所有文件。为简化X的开发和安装，X的文件没有集成到系统中。 X自己在/usr/X11R6 下类似/usr 。 
-		13. /usr/X386：类似/usr/X11R6 ，但是给X11 Release 5的。 /usr/bin：几乎所有用户命令。有些命令在/bin 或/usr/local/bin 中。 /usr/sbin：根文件系统不必要的系统管理命令，例如多数服务程序。 
-		14. /usr/man、/usr/info、/usr/doc：手册页、GNU信息文档和各种其他文档文件。 /usr/include：C编程语言的头文件。为了一致性这实际上应该在/usr/lib 下，但传统上支持这个名字。 
-		15. /usr/lib：程序或子系统的不变的数据文件，包括一些site-wide配置文件。名字lib来源于库(library); 编程的原始库存在/usr/lib 里。 
-		16. /usr/local：本地安装的软件和其他文件放在这里。  
-		17. /var：包含在正常操作中被改变的文件：假脱机文件、记录文件、加锁文件、临时文件和页格式化文件等。文件系统包含会改变的文件，比如spool目录(mail、news、打印机等用的)， log文件、formatted manual pages和暂存文件。传统上/var的所	/boot：引导加载器(bootstrap loader)使用的文件，如LILO。核心映象也经常在这里，而不是在根目录。如果有许多核心映象，这个目录可能变得很大，这时可能使用单独的文件系统更好。另一个理由是要确保核心映象必须在IDE硬盘的前1024柱面内。当计算机启动时（如果有多个操作系统，有可能允许你选择启动哪一个操作系统），这些文件首先被装载。这个目录也会包含LINUX核（压缩文件 vmlinuz），但LINUX核也可以存在别处，只要配置LILO并且LILO知道LINUX核在哪儿。 有东西曾在 /usr 下的某个地方，但这样/usr就不可能只读安装了。
-		18. /home：包含用户的文件：参数设置文件、个性化文件、文档、数据、EMAIL、缓存数据等。这个目录在系统省级时应该保留。文件系统包含用户家目录，即系统上的所有实际数据。一个大的/home 可能要分为若干文件系统，需要在/home 下加一级名字，如/home/student、/home/staff 等。 
-		19. /proc：整个包含虚幻的文件。它们实际上并不存在磁盘上，也不占用任何空间。（用 ls –l 可以显示它们的大小）当查看这些文件时，实际上是在访问存在内存中的信息，这些信息用于访问系统。该文件系统是一个假的文件系统。它不存在在磁盘某个磁盘上。而是由核心在内存中产生。用于提供关于系统的信息(originally about processes, hence the name)。 根文件系统：根文件系统一般应该比较小，因为它包括严格的文件和一些小的不经常改变的文件系统，不容易损坏。损坏的根文件系统一般意味着系统无法引导，除非用特定的方法(例如从软盘)。根目录一般不含任何文件，除了可能的标准的系统引导映象，通常叫/vmlinuz 。所有其他文件在根文件系统的子目录中。
-	 20.  /opt：可选的应用程序，譬如，REDHAT 5.2下的KDE （REDHAT 6.0下，KDE放在其它的X-WINDOWS应用程序中，主执行程序在/usr/bin目录下 /lost+found：在文件系统修复时恢复的文件。	
+		12. /var：包含在正常操作中被改变的文件：假脱机文件、记录文件、加锁文件、临时文件和页格式化文件等。文件系统包含会改变的文件，比如spool目录(mail、news、打印机等用的)， log文件、formatted manual pages和暂存文件。传统上/var的所	/boot：引导加载器(bootstrap loader)使用的文件，如LILO。核心映象也经常在这里，而不是在根目录。如果有许多核心映象，这个目录可能变得很大，这时可能使用单独的文件系统更好。另一个理由是要确保核心映象必须在IDE硬盘的前1024柱面内。当计算机启动时（如果有多个操作系统，有可能允许你选择启动哪一个操作系统），这些文件首先被装载。这个目录也会包含LINUX核（压缩文件 vmlinuz），但LINUX核也可以存在别处，只要配置LILO并且LILO知道LINUX核在哪儿。 有东西曾在 /usr 下的某个地方，但这样/usr就不可能只读安装了。
+		13. /home：包含用户的文件：参数设置文件、个性化文件、文档、数据、EMAIL、缓存数据等。这个目录在系统省级时应该保留。文件系统包含用户家目录，即系统上的所有实际数据。一个大的/home 可能要分为若干文件系统，需要在/home 下加一级名字，如/home/student、/home/staff 等。 
+		14. /proc：整个包含虚幻的文件。它们实际上并不存在磁盘上，也不占用任何空间。（用 ls –l 可以显示它们的大小）当查看这些文件时，实际上是在访问存在内存中的信息，这些信息用于访问系统。该文件系统是一个假的文件系统。它不存在在磁盘某个磁盘上。而是由核心在内存中产生。用于提供关于系统的信息(originally about processes, hence the name)。 根文件系统：根文件系统一般应该比较小，因为它包括严格的文件和一些小的不经常改变的文件系统，不容易损坏。损坏的根文件系统一般意味着系统无法引导，除非用特定的方法(例如从软盘)。根目录一般不含任何文件，除了可能的标准的系统引导映象，通常叫/vmlinuz 。所有其他文件在根文件系统的子目录中。
+	 15.  /opt：可选的应用程序，譬如，REDHAT 5.2下的KDE （REDHAT 6.0下，KDE放在其它的X-WINDOWS应用程序中，主执行程序在/usr/bin目录下 /lost+found：在文件系统修复时恢复的文件。	
 
  
 	 
 
 
 ####/etc/ 系统主要的配置文件存放目录
-	/etc/passwd	用户的基本信息，包括用户的用户名，UID,GID,用户信息说明,用户的主文件夹，用户的Shell等信息
-	/etc/group	用户组基本信息，包括用户组名称，GID，用户组支持的用户帐号等信息
-   	/etc/shadow 	/etc/passwd 文件的补充，早期用户的密码保存在/etc/passwd里面，后来为了安全，就将密码保存到此文件里面，/etc/passwd里用x代替密码。包括帐号名称，密码，最近改动密码的日期，密码不可被改动的天数，密码需要重新更改的天数，密码需要更改期限前的警告天数，密码过期后的帐号宽限时间，帐号失效日期等信息。在安装了影子(shadow)口令软件的系统上的影子口令文件。影子口令文件将/etc/passwd  文件中的加密口令移动到/etc/shadow中，而后者只对超级用户(root)可读。这使破译口令更困难，以此增加系统的安全性。   
-   	/etc/gshadow	阴影口令套组中的组配置文件
+	/etc/passwd	  用户的基本信息，包括用户的用户名，UID,GID,用户信息说明,用户的主文件夹，用户的Shell等信息
+	/etc/group	  用户组基本信息，包括用户组名称，GID，用户组支持的用户帐号等信息
+   	/etc/shadow   /etc/passwd 文件的补充，早期用户的密码保存在/etc/passwd里面，后来为了安全，就将密码保存到此文件里面，/etc/passwd里用x代替密码。包括帐号名称，密码，最近改动密码的日期，密码不可被改动的天数，密码需要重新更改的天数，密码需要更改期限前的警告天数，密码过期后的帐号宽限时间，帐号失效日期等信息。在安装了影子(shadow)口令软件的系统上的影子口令文件。影子口令文件将/etc/passwd  文件中的加密口令移动到/etc/shadow中，而后者只对超级用户(root)可读。这使破译口令更困难，以此增加系统的安全性。   
+   	/etc/gshadow        阴影口令套组中的组配置文件
    	/etc/login.defs		设置用户帐号限制的文件，在这里我们可配置密码的最大过期天数，密码的最大长度约束等内容。该文件里的配置对root用户无效。如果/etc/shadow文件里有相同的选项，则以/etc/shadow里的设置为准，也就是说/etc/shadow的配置优先级高于/etc/login.defs
    	/etc/securetty		列出的虚拟控制台确定允许root用户可以登录，意思就是里面列出的都是root用户可以从上面登录，确认安全终端，即哪个终端允许超级用户(root)登录。一般只列出虚拟控制台，这样就不可能(至少很困难)通过调制解调器(modem)或网络闯入系统并得到超级用户特权。  
-   	/etc/securetty/access.conf	控制所有用户的访问
-   	/etc/bashrc	用于系统范围内的别名和函数
+   	/etc/securetty/access.conf	 控制所有用户的访问
+   	/etc/bashrc	    用于系统范围内的别名和函数
    	/etc/profile	此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置. 
-   	/etc/profile ，/etc/csh.login，/etc/csh.cshrc 登录或启动时bourne或cshells执行的文件。这允许系统管理员为所有用户建立全局缺省环境。
+   	/etc/profile ，/etc/csh.login，/etc/csh.cshrc    登录或启动时bourne或cshells执行的文件。这允许系统管理员为所有用户建立全局缺省环境。
    	/etc/opendap/slapd.conf 	LDAP服务器的主配置文件
-   	/etc/pam_ldap.conf		LDAP 客户配置
-   	/etc/openldap/ldap.conf	LDAP 配置拓展
-   	/etc/crontab		cron 是一个可以用来根据时间、日期、月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
+   	/etc/pam_ldap.conf		    LDAP 客户配置
+   	/etc/openldap/ldap.conf	    LDAP 配置拓展
+   	/etc/crontab		        cron 是一个可以用来根据时间、日期、月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
    	/etc/xinetd.conf	保存 xinetd 服务的通用配置
-   	/etc/fstab 	在引导期间挂载的文件系统的标准配置文件
+   	/etc/fstab 	        在引导期间挂载的文件系统的标准配置文件
    	/etc/auto.master	/misc/目录的配置文件
-   	/etc/auto.misc	自动挂载器autofs的配置文件，关于autofs详见：http://blog.csdn.net/m582445672/article/details/7885477
-   	/etc/auto.net		查看和读取共享的 HFS 目录
-   	/etc/auto.smb  	在不需要用户名和口令的共享目录起作用
-   	/etc/auto.home	设置共享目录相关文件
-   	/etc/yum.conf	基于 yum 的配置文件
-   	/etc/sysconfig/network6	简单的网络配置内容
+   	/etc/auto.misc	    自动挂载器autofs的配置文件，关于autofs详见：http://blog.csdn.net/m582445672/article/details/7885477
+   	/etc/auto.net	   查看和读取共享的 HFS 目录
+   	/etc/auto.smb  	   在不需要用户名和口令的共享目录起作用
+   	/etc/auto.home	   设置共享目录相关文件
+   	/etc/yum.conf	   基于 yum 的配置文件
+   	/etc/sysconfig/network6	     简单的网络配置内容
    	/etc/sysconfig/network-scripts/ifcg-lo		回环地址信息
-   	/etc/nsswitch.conf 	定义了从认证到名称服务器的所有内容的的数据库搜索条目 详见：http://wPostfix维护与管理技巧ww.cnblogs.com/cute/archive/2012/05/17/2506342.html
-   	/etc/hosts	保存了主机名和它们的 IP 地址，功能详见：http://blog.sina.com.cn/s/blog_6714fba701018pip.html
-   	/etc/resolv.conf	记录了 DNS 服务器的位置
+   	/etc/nsswitch.conf 	         定义了从认证到名称服务器的所有内容的的数据库搜索条目 详见：http://wPostfix维护与管理技巧ww.cnblogs.com/cute/archive/2012/05/17/2506342.html
+   	/etc/hosts	   保存了主机名和它们的 IP 地址，功能详见：http://blog.sina.com.cn/s/blog_6714fba701018pip.html
+   	/etc/resolv.conf	    记录了 DNS 服务器的位置
    	/etc/sysconfig/init		文件中的参数指定了系统在引导过程中的外观和体验,关于/etc/sysconfig/目录详见：http://blog.chinaunix.net/uid-793704-id-2545546.html
    	/etc/init/control-alt-delete.conf	定义按下Ctrl-Alt-Del 重启系统功能的文件,系统启动时调用，详见：https://linux.cn/article-3976-1.html
-   	/etc/init/plymouth		取代图形化系统
-   	/etc/init/readahead-collector.conf	记录启动时预读取的文件
-   	/etc/init/readahead-disable-services.conf	记录启动时禁止预读取的文件
-   	/etc/init/readahead.conf	实际启动 readahead 进程
-   	/etc/init/prefdm.conf		启动并管理运行级 5 的 GUI 登录
-   	/etc/init/start-ttys.conf		启动全部终端
-   	/etc/init/tty.conf	另一个终端名称
-   	/etc/init/serial.conf	当通过串行端口建立连接时使用此文件
-   	/etc/init/rcS.conf	在引导过程中执行/etc/rd.d/rc.sysinit 脚本
-   	/etc/init/rcS-sulogin.conf	在单用户模式下启动使用一个终端
-   	/etc/init/rc.conf	在运行时执行脚本,被执行的脚本保存在/etc/rcn.d/目录中
-   	/etc/inittab	itit的配置文件，init根据/etc/inittab配置文件来执行相应的脚本进行系统初始化,如设置键盘、字体,装载模块,设置网络等。
-   	/etc/hosts.allow	TCP包装器的同意列表
-   	/etc/hosts.deny	TCP包装器的拒绝列表，关于/etc/hosts.allow 和 /etc/hosts.deny 参见http://blog.sina.com.cn/s/blog_53da0ca70101dewe.html
+   	/etc/init/plymouth		  取代图形化系统
+   	/etc/init/readahead-collector.conf	         记录启动时预读取的文件
+   	/etc/init/readahead-disable-services.conf	 记录启动时禁止预读取的文件
+   	/etc/init/readahead.conf	 实际启动 readahead 进程
+   	/etc/init/prefdm.conf		 启动并管理运行级 5 的 GUI 登录
+   	/etc/init/start-ttys.conf	 启动全部终端
+   	/etc/init/tty.conf	         另一个终端名称
+   	/etc/init/serial.conf	     当通过串行端口建立连接时使用此文件
+   	/etc/init/rcS.conf	         在引导过程中执行/etc/rd.d/rc.sysinit 脚本
+   	/etc/init/rcS-sulogin.conf	 在单用户模式下启动使用一个终端
+   	/etc/init/rc.conf	         在运行时执行脚本,被执行的脚本保存在/etc/rcn.d/目录中
+   	/etc/inittab	             init的配置文件，init根据/etc/inittab配置文件来执行相应的脚本进行系统初始化,如设置键盘、字体,装载模块,设置网络等。
+   	/etc/hosts.allow	 TCP包装器的同意列表
+   	/etc/hosts.deny	     TCP包装器的拒绝列表，关于/etc/hosts.allow 和 /etc/hosts.deny 参见http://blog.sina.com.cn/s/blog_53da0ca70101dewe.html
    	/etc/sysctl.conf 	一个允许改变正在运行中的Linux系统的接口，它包含一些TCP/IP堆栈和虚拟内存系统的高级选项，修改内核参数永久生效。也就是说/proc/sys下内核文件与配置文件sysctl.conf中变量存在着对应关系。
    	/etc/postfix/
-		/etc/postfix/relocated	包含外部网络用户的信息
-		/etc/postfix/transport	在需要转发邮件的情况下很有用
-		/etc/postfix/virtrual	将电子邮件转发给本地系统上的用户账户
-		/etc/postfix/main.cf	Postfix 主要配置/etc/sysconfig/目录　
-	/etc/sysconfig/network-scripts/	存储关于网络配置的脚本文件
-	/etc/rcn.d/	开机时被自动执行的脚本
-	/etc/yum/pluginconf.d/		关于 yum 文件的配置
-	/etc/yum.repos.d/		里面的配置文件用来连接系统和实际库
-	/etc/skel/			包含新账户的默认环境文件
-	/etc/profile.d/		用来包含/etc/profile 文件要执行的脚本
-	/etc/cron.d			描述计算机的定期任务
-	/etc/xinetd.d/		里面的每个文件都为 xinetd 指定一个要管理的特点服务
-	/etc/ssh/		存储 SSH 服务配置文件
-	/etc/rc或/etc/rc.d或/etc/rc?.d 启动、或改变运行级时运行的脚本或脚本的目录。 
-	/etc/fdprm   软盘参数表，用以说明不同的软盘格式。可用setfdprm 进行设置。更多的信息见setfdprm的帮助页。
-	/etc/fstab   指定启动时需要自动安装的文件系统列表。也包括用swapon -a启用的swap区的信息。
-	/etc/issue  包括用户在登录提示符前的输出信息。通常包括系统的一段短说明或欢迎信息。具体内容由系统管理员确定。
-	/etc/magic   “f i l e”的配置文件。包含不同文件格式的说明，“f i l e”基于它猜测文件类型。  
-	/etc/motd   m o t d是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。常用于通告信息，如计划关机时间的警告等。
-	 /etc/mtab   当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由mount 命令自动更新。当需要一个当前安装的文件系统的列表时使用(例如df 命令)。
-	  /etc/login.defs  l o g i n命令的配置文件。
+		/etc/postfix/relocated	      包含外部网络用户的信息
+		/etc/postfix/transport	      在需要转发邮件的情况下很有用
+		/etc/postfix/virtrual	      将电子邮件转发给本地系统上的用户账户
+		/etc/postfix/main.cf	      Postfix 主要配置/etc/sysconfig/目录　
+	/etc/sysconfig/network-scripts/	  存储关于网络配置的脚本文件
+	/etc/rcn.d/	              开机时被自动执行的脚本
+	/etc/yum/pluginconf.d/	  关于 yum 文件的配置
+	/etc/yum.repos.d/		  里面的配置文件用来连接系统和实际库
+	/etc/skel/			      包含新账户的默认环境文件
+	/etc/profile.d/		      用来包含/etc/profile 文件要执行的脚本
+	/etc/cron.d			      描述计算机的定期任务
+	/etc/xinetd.d/		      里面的每个文件都为 xinetd 指定一个要管理的特点服务
+	/etc/ssh/		          存储 SSH 服务配置文件
+	/etc/rc或/etc/rc.d或/etc/rc?.d   启动、或改变运行级时运行的脚本或脚本的目录。 
+	/etc/fdprm         软盘参数表，用以说明不同的软盘格式。可用setfdprm 进行设置。更多的信息见setfdprm的帮助页。
+	/etc/fstab         指定启动时需要自动安装的文件系统列表。也包括用swapon -a启用的swap区的信息。
+	/etc/issue         包括用户在登录提示符前的输出信息。通常包括系统的一段短说明或欢迎信息。具体内容由系统管理员确定。
+	/etc/magic         “file”的配置文件。包含不同文件格式的说明，“file”基于它猜测文件类型。  
+	/etc/motd          motd是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。常用于通告信息，如计划关机时间的警告等。
+	 /etc/mtab        当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由mount 命令自动更新。当需要一个当前安装的文件系统的列表时使用(例如df 命令)。
 	  /etc/printcap   类似/etc/termcap ，但针对打印机。语法不同。 
-	  /etc/shells   列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允许该用户登录。 
-	  /etc/termcap   终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。这样，多数的程序可以在多数终端上运行。              
+	  /etc/shells     列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允许该用户登录。 
+	  /etc/termcap    终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。这样，多数的程序可以在多数终端上运行。              
 ####/usr/
 	/usr是个很重要的目录，通常这一文件系统很大，因为所有程序安装在这里。/usr里的所有文件一般来自linux发行版(distribution)；本地安装的程序和其他东西在/usr/local 下，因为这样可以在升级新版系统或新发行版时无须重新安装全部程序。/usr 目录下的许多内容是可选的，但这些功能会使用户使用系统更加有效。/usr可容纳许多大型的软件包和它们的配置文件。下面列出一些重要的目录(一些不太重要的目录被省略了)。   
-	/usr/x11r6 包含Xwindow系统的所有可执行程序、配置文件和支持文件。为简化x的开发和安装，x的文件没有集成到系统中。Xwindow系统是一个功能强大的图形环境，提供了大量的图形工具程序。用户如果对microsoft windows或machintosh比较熟悉的话，就不会对Xwindow系统感到束手无策了。   
-	/usr/x386   类似/usr/x 11r6，但是是专门给x11 release 5的。   
-	/usr/bin   集中了几乎所有用户命令，是系统的软件库。另有些命令在/bin 或/usr/local/bin 中。   
-	/usr/sbin   包括了根文件系统不必要的系统管理命令，例如多数服务程序。   
+	/usr/x11r6       包含Xwindow系统的所有可执行程序、配置文件和支持文件。为简化x的开发和安装，x的文件没有集成到系统中。Xwindow系统是一个功能强大的图形环境，提供了大量的图形工具程序。用户如果对microsoft windows或machintosh比较熟悉的话，就不会对Xwindow系统感到束手无策了。   
+	/usr/x386        类似/usr/x 11r6，但是是专门给x11 release 5的。   
+	/usr/bin         集中了几乎所有用户命令，是系统的软件库。另有些命令在/bin 或/usr/local/bin 中。   
+	/usr/sbin        包括了根文件系统不必要的系统管理命令，例如多数服务程序。   
 	/usr/man、/usr/info、/usr/doc   这些目录包含所有手册页、g n u信息文档和各种其他文档文件。每个联机手册的“节”都有两个子目录。例如： /usr/man/man1中包含联机手册第一节的源码(没有格式化的原始文件)，/usr/man/cat1包含第一节已格式化的内容。l联机手册分为以下九节：内部命令、系统调用、库函数、设备、文件格式、游戏、宏软件包、系统管理和核心程序。   
-	/usr/include   包含了c语言的头文件，这些文件多以. h结尾，用来描述c语言程序中用到的数据结构，子过程和常量。为了保持一致性，这实际上应该放在/usr/lib 下，但习惯上一直沿用了这个名字。   
-	/usr/lib   包含了程序或子系统的不变的数据文件，包括一些site-wide配置文件。名字lib来源于库(library); 编程的原始库也存在/usr/lib 里。当编译程序时，程序便会和其中的库进行连接。也有许多程序把配置文件存入其中。   
-	/usr/local   本地安装的软件和其他文件放在这里。这与/ u s r很相似。用户可能会在这发现一些比较大的软件包，如tex，emacs等。   
-	/usr/share/doc/	各软件设计者的文档
-####/dev文件系统   
+	/usr/include     包含了c语言的头文件，这些文件多以. h结尾，用来描述c语言程序中用到的数据结构，子过程和常量。为了保持一致性，这实际上应该放在/usr/lib 下，但习惯上一直沿用了这个名字。   
+	/usr/lib         包含了程序或子系统的不变的数据文件，包括一些site-wide配置文件。名字lib来源于库(library); 编程的原始库也存在/usr/lib 里。当编译程序时，程序便会和其中的库进行连接。也有许多程序把配置文件存入其中。   
+	/usr/local       本地安装的软件和其他文件放在这里。这与/ u s r很相似。用户可能会在这发现一些比较大的软件包，如tex，emacs等。   
+	/usr/share/doc/	 各软件设计者的文档
+####/dev/文件系统   
 	/dev 目录包括所有设备的设备文件。设备文件用特定的约定命名，这在设备列表中说明。设备文件在安装时由系统产生，以后可以用/dev/makedev 描述。
-	/dev/makedev.local 是系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准makedev 的一部分)。
-	/dev/console 系统控制台，也就是直接和系统连接的监视器。   
-	/dev/hdide硬盘驱动程序接口。如：/dev/hda指的是第一个硬盘，had1则是指/dev/hda的第一个分区。如系统中有其他的硬盘，则依次为/dev/hdb、/dev/hdc......；如有多个分区则依次为hda1、hda2......   
-	/dev/sdscsi磁盘驱动程序接口。如有系统有scsi硬盘，就不会访问/dev/had，而会访问/dev/sda。   
-	/dev/fd   软驱设备驱动程序。如：/dev/fd0指系统的第一个软盘，也就是通常所说的a：盘，/dev/fd1指第二个软盘，......而/dev/fd1h1440则表示访问驱动器1中的4.5高密盘。   
-	/dev/stscsi磁带驱动器驱动程序。   
-	/dev/tty   提供虚拟控制台支持。如：/dev/tty1指的是系统的第一个虚拟控制台，/dev/tty2则是系统的第二个虚拟控制台。   
-	/dev/pty   提供远程登陆伪终端支持。在进行telnet登录时就要用到/dev/pty设备。   
-	/dev/ttys   计算机串行接口，对于dos来说就是“com1”口。   
-	/dev/cua   计算机串行接口，与调制解调器一起使用的设备。   
-	/dev/null   “黑洞”，所有写入该设备的信息都将消失。例如：当想要将屏幕上的输出信息隐藏起来时，只要将输出信息输入到/dev/null中即可。
-
+	/dev/makedev.local   系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准makedev 的一部分)。
+	/dev/console         系统控制台，也就是直接和系统连接的监视器。   
+	/dev/hdide           硬盘驱动程序接口。如：/dev/hda指的是第一个硬盘，had1则是指/dev/hda的第一个分区。如系统中有其他的硬盘，则依次为/dev/hdb、/dev/hdc......；如有多个分区则依次为hda1、hda2......   
+	/dev/sdscsi          磁盘驱动程序接口。如有系统有scsi硬盘，就不会访问/dev/had，而会访问/dev/sda。   
+	/dev/fd              软驱设备驱动程序。如：/dev/fd0指系统的第一个软盘，也就是通常所说的a：盘，/dev/fd1指第二个软盘，......而/dev/fd1h1440则表示访问驱动器1中的4.5高密盘。   
+	/dev/stscsi   磁带驱动器驱动程序。   
+	/dev/tty      提供虚拟控制台支持。如：/dev/tty1指的是系统的第一个虚拟控制台，/dev/tty2则是系统的第二个虚拟控制台。   
+	/dev/pty      提供远程登陆伪终端支持。在进行telnet登录时就要用到/dev/pty设备。   
+	/dev/ttys     计算机串行接口，对于dos来说就是“com1”口。   
+	/dev/cua      计算机串行接口，与调制解调器一起使用的设备。   
+	/dev/null     “黑洞”，所有写入该设备的信息都将消失。例如：当想要将屏幕上的输出信息隐藏起来时，只要将输出信息输入到/dev/null中即可。
 ####/var文件系统   
-	/var 包含系统一般运行时要改变的数据。通常这些数据所在的目录的大小是要经常变化   
-	或扩充的。原来/ v a r目录中有些内容是在/ u s r中的，但为了保持/ u s r目录的相对稳定，就把那   
-	些需要经常改变的目录放到/ v a r中了。每个系统是特定的，即不通过网络与其他计算机共享。   
+	/var 包含系统一般运行时要改变的数据。通常这些数据所在的目录的大小是要经常变化或扩充的。原来/var目录中有些内容是在/usr中的，但为了保持/usr目录的相对稳定，就把那些需要经常改变的目录放到/var中了。每个系统是特定的，即不通过网络与其他计算机共享。   
 	下面列出一些重要的目录(一些不太重要的目录省略了)。   
-	/var/catman   包括了格式化过的帮助( m a n )页。帮助页的源文件一般存在/ u s r / m a n / m a n中；有些m a n页可能有预格式化的版本，存在/ u s r / m a n / c a t中。而其他的m a n页在第一次看时都需要格式化，格式化完的版本存在/var/man 中，这样其他人再看相同的页时就无须等待格式化了。(/var/catman 经常被清除，就像清除临时目录一样。)   
-	/var/lib   存放系统正常运行时要改变的文件。   
+	/var/catman   包括了格式化过的帮助(man)页。帮助页的源文件一般存在/usr/man/man中；有些man页可能有预格式化的版本，存在/usr/man/cat中。而其他的man页在第一次看时都需要格式化，格式化完的版本存在/var/man 中，这样其他人再看相同的页时就无须等待格式化了。(/var/catman 经常被清除，就像清除临时目录一样。)   
+	/var/lib     存放系统正常运行时要改变的文件。   
 	/var/local   存放/usr/local 中安装的程序的可变数据(即系统管理员安装的程序)。注意，如果必要，即使本地安装的程序也会使用其他/var 目录，例如/var/lock 。   
-	/var/lock   
-	锁定文件。许多程序遵循在/var/lock 中产生一个锁定文件的约定，以用来支持他们正在使用某个特定的设备或文件。其他程序注意到这个锁定文件时，就不会再使用这个设备或文件。   
-	/var/log   各种程序的日志( l o g )文件，尤其是login (/var/log/wtmp log纪录所有到系统的登录和注销) 和syslog (/var/log/messages 纪录存储所有核心和系统程序信息)。/var/log 里的文件经常不确定地增长，应该定期清除。   
-	/var/run   保存在下一次系统引导前有效的关于系统的信息文件。例如， /var/run/utmp 包含当前登录的用户的信息。   
+	/var/lock    锁定文件。许多程序遵循在/var/lock 中产生一个锁定文件的约定，以用来支持他们正在使用某个特定的设备或文件。其他程序注意到这个锁定文件时，就不会再使用这个设备或文件。   
+	/var/log     各种程序的日志( l o g )文件，尤其是login (/var/log/wtmp log纪录所有到系统的登录和注销) 和syslog (/var/log/messages 纪录存储所有核心和系统程序信息)。/var/log 里的文件经常不确定地增长，应该定期清除。   
+	/var/run     保存在下一次系统引导前有效的关于系统的信息文件。例如， /var/run/utmp 包含当前登录的用户的信息。   
 	/var/spool   放置“假脱机(spool)”程序的目录，如mail，news、打印队列和其他队列工作的目录。每个不同的spool在/var/spool 下有自己的子目录，例如，用户的邮箱就存放在/var/spool/mail 中。   
-	/var/tmp  比/tmp 允许更大的或需要存在较长时间的临时文件。注意系统管理员可能不允许/var/tmp 有很旧的文件。 
-	/var/lib：系统正常运行时要改变的文件。 
-	/var/local：/usr/local中安装的程序的可变数据(即系统管理员安装的程序)。注意，如果必要，即使本地安装的程序也会使用其他/var 目录，例如/var/lock 。 
-	/var/lock：锁定文件。许多程序遵循在/var/lock 中产生一个锁定文件的约定，以支持他们正在使用某个特定的设备或文件。其他程序注意到这个锁定文件，将不试图使用这个设备或文件。 
-	/var/log：各种程序的Log文件，特别是login (/var/log/wtmp log所有到系统的登录和注销) 和syslog (/var/log/messages 里存储所有核心和系统程序信息。 /var/log 里的文件经常不确定地增长，应该定期清除。 
-	/var/run：保存到下次引导前有效的关于系统的信息文件。例如， /var/run/utmp 包含当前登录的用户的信息。 /var/spool：mail, news, 打印队列和其他队列工作的目录。每个不同的spool在/var/spool 下有自己的子目录，例如，用户的邮箱在/var/spool/mail 中。 
-	/var/tmp：比/tmp 允许的大或需要存在较长时间的临时文件。 (虽然系统管理员可能不允许/var/tmp 有很旧的文件。) /proc文件系统 /proc 文件系统是一个假的文件系统。它不存在在磁盘某个磁盘上。而是由核心在内存中产生。用于提供关于系统的信息(originally about processes, hence the name)。下面说明一些最重要的文件和目录。   
+	/var/tmp     比/tmp 允许更大的或需要存在较长时间的临时文件。注意系统管理员可能不允许/var/tmp 有很旧的文件。 
+	/var/lib     系统正常运行时要改变的文件。 
+	/var/local   /usr/local中安装的程序的可变数据(即系统管理员安装的程序)。注意，如果必要，即使本地安装的程序也会使用其他/var 目录，例如/var/lock 。 
+	/var/lock    锁定文件。许多程序遵循在/var/lock 中产生一个锁定文件的约定，以支持他们正在使用某个特定的设备或文件。其他程序注意到这个锁定文件，将不试图使用这个设备或文件。 
+	/var/log     各种程序的Log文件，特别是login (/var/log/wtmp log所有到系统的登录和注销) 和syslog(/var/log/messages 里存储所有核心和系统程序信息。 /var/log 里的文件经常不确定地增长，应该定期清除。 
+	/var/run     保存到下次引导前有效的关于系统的信息文件。例如， /var/run/utmp 包含当前登录的用户的信息。 
+	/var/spool   mail, news, 打印队列和其他队列工作的目录。每个不同的spool在/var/spool 下有自己的子目录，例如，用户的邮箱在/var/spool/mail 中。 
+	/var/tmp     比/tmp 允许的大或需要存在较长时间的临时文件。 (虽然系统管理员可能不允许/var/tmp 有很旧的文件。) /proc文件系统 /proc 文件系统是一个假的文件系统。它不存在在磁盘某个磁盘上。而是由核心在内存中产生。用于提供关于系统的信息(originally about processes, hence the name)。下面说明一些最重要的文件和目录。   
 ####/proc文件系统   
 	/proc 文件系统是一个伪的文件系统，就是说它是一个实际上不存在的目录，因而这是一个非常特殊的目录。它并不存在于某个磁盘上，而是由核心在内存中产生。这个目录用于提供关于系统的信息。下面说明一些最重要的文件和目录(/proc 文件系统在proc man页中有更详细的说明)。   
-	/proc/x   关于进程x的信息目录，这一x是这一进程的标识号。每个进程在/proc 下有一个名为自己进程号的目录。   
-	/proc/cpuinfo  存放处理器( c p u )的信息，如c p u的类型、制造商、型号和性能等。   
+	/proc/x         关于进程x的信息目录，这一x是这一进程的标识号。每个进程在/proc 下有一个名为自己进程号的目录。   
+	/proc/cpuinfo   处理器信息，如类型、制造商、型号和性能。 
 	/proc/devices   当前运行的核心配置的设备驱动的列表。   
-	/proc/dma   显示当前使用的d m a通道。   
+	/proc/dma       显示当前使用的DMA通道。    
 	/proc/filesystems   核心配置的文件系统信息。   
-	/proc/interrupts   显示被占用的中断信息和占用者的信息，以及被占用的数量。   
-	/proc/ioports   当前使用的i / o端口。   
-	/proc/kcore   系统物理内存映像。与物理内存大小完全一样，然而实际上没有占用这么多内存；它仅仅是在程序访问它时才被创建。(注意：除非你把它拷贝到什么地方，否则/proc 下没有任何东西占用任何磁盘空间。)   
-	/proc/kmsg   核心输出的消息。也会被送到s y s l o g。   
-	/proc/ksyms   核心符号表。   
-	/proc/loadavg   系统“平均负载”； 3个没有意义的指示器指出系统当前的工作量。   
-	/proc/meminfo   各种存储器使用信息，包括物理内存和交换分区( s w a p )。   
+	/proc/interrupts    显示被占用的中断信息和占用者的信息，以及被占用的数量。   
+	/proc/ioports       当前使用的I/O端口。 
+	/proc/kcore         系统物理内存映像。与物理内存大小完全一样，然而实际上没有占用这么多内存；它仅仅是在程序访问它时才被创建。(注意：除非你把它拷贝到什么地方，否则/proc 下没有任何东西占用任何磁盘空间。)   
+	/proc/kmsg       核心输出的消息。也被送到syslog 。
+	/proc/ksyms      核心符号表。   
+	/proc/loadavg    系统“平均负载”； 3个没有意义的指示器指出系统当前的工作量。   
+	/proc/meminfo    存储器使用信息，包括物理内存和交换分区(swap)。 
+	/proc/modules    存放当前加载了哪些核心模块信息。   
+	/proc/net        网络协议状态信息。   
+	/proc/self       存放到查看/proc 的程序的进程目录的符号连接。当2个进程查看/proc 时，这将会是不同的连接。这主要便于程序得到它自己的进程目录。   
+	/proc/stat      系统的不同状态，例如，系统启动后页面发生错误的次数。   
+	/proc/uptime    系统启动的时间长度。   
+	/proc/version   核心版本。 /etc目录 /etc 目录包含很多文件。许多网络配置文件也在/etc 中。 
+	/proc/sys/		存储内核运行的参数a p )。   
 	/proc/modules   存放当前加载了哪些核心模块信息。   
 	/proc/net   网络协议状态信息。   
 	/proc/self   存放到查看/proc 的程序的进程目录的符号连接。当2个进程查看/proc 时，这将会是不同的连接。这主要便于程序得到它自己的进程目录。   
