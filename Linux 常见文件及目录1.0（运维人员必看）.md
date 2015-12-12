@@ -149,8 +149,6 @@
 	/usr/lib   包含了程序或子系统的不变的数据文件，包括一些site-wide配置文件。名字lib来源于库(library); 编程的原始库也存在/usr/lib 里。当编译程序时，程序便会和其中的库进行连接。也有许多程序把配置文件存入其中。   
 	/usr/local   本地安装的软件和其他文件放在这里。这与/ u s r很相似。用户可能会在这发现一些比较大的软件包，如tex，emacs等。   
 	/usr/share/doc/	各软件设计者的文档
-####/proc/
-　　　/proc/sys/		存储内核运行的参数
 ####/dev文件系统   
 	/dev 目录包括所有设备的设备文件。设备文件用特定的约定命名，这在设备列表中说明。设备文件在安装时由系统产生，以后可以用/dev/makedev 描述。
 	/dev/makedev.local 是系统管理员为本地设备文件(或连接)写的描述文稿(即如一些非标准设备驱动不是标准makedev 的一部分)。
@@ -223,6 +221,7 @@
 	/proc/stat：系统的不同状态，such as the number of page faults since the system was booted. 
 	/proc/uptime：系统启动的时间长度。 
 	/proc/version：核心版本。 /etc目录 /etc 目录包含很多文件。许多网络配置文件也在/etc 中。 
+	/proc/sys/		存储内核运行的参数�也在/etc 中。 
 
 目录树可以分为小的部分，每个部分可以在自己的磁盘或分区上（/proc比较特殊）。主要部分是/usr、/var、/home、/proc和根文件系统。每个部分有不同的目的。 
 
