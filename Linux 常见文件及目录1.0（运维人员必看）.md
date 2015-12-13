@@ -107,24 +107,24 @@
 		/etc/postfix/transport	      在需要转发邮件的情况下很有用
 		/etc/postfix/virtrual	      将电子邮件转发给本地系统上的用户账户
 		/etc/postfix/main.cf	      Postfix主要配置/etc/sysconfig/目录　
-	/etc/rc或/etc/rc.d或/etc/rc?.d    启动、或改变运行级时运行的脚本或脚本的目录。 
+	/etc/rc/或/etc/rc.d/或/etc/rc?.d/   启动、或改变运行级时运行的脚本或脚本的目录。 
 	/etc/rcn.d/	              开机时被自动执行的脚本
-	/etc/resolv.conf	    记录了 DNS 服务器的位置
-	/etc/securetty/		列出的虚拟控制台确定允许root用户可以登录，意思就是里面列出的都是root用户可以从上面登录，确认安全终端，即哪个终端允许超级用户(root)登录。一般只列出虚拟控制台，这样就不可能(至少很困难)通过调制解调器(modem)或网络闯入系统并得到超级用户特权。  
-	   	/etc/securetty/access.conf	 控制所有用户的访问
-	/etc/shadow   /etc/passwd 文件的补充，早期用户的密码保存在/etc/passwd里面，后来为了安全，就将密码保存到此文件里面，/etc/passwd里用x代替密码。包括帐号名称，密码，最近改动密码的日期，密码不可被改动的天数，密码需要重新更改的天数，密码需要更改期限前的警告天数，密码过期后的帐号宽限时间，帐号失效日期等信息。在安装了影子(shadow)口令软件的系统上的影子口令文件。影子口令文件将/etc/passwd  文件中的加密口令移动到/etc/shadow中，而后者只对超级用户(root)可读。这使破译口令更困难，以此增加系统的安全性。
-	/etc/shells     列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允许该用户登录。    
+	/etc/resolv.conf	      记录了 DNS 服务器的位置
+	/etc/securetty/		      
+	   	/etc/securetty/access.conf	  列出的虚拟控制台确定允许root用户可以登录，意思就是里面列出的都是root用户可以从上面登录，确认安全终端，即哪个终端允许超级用户(root)登录。一般只列出虚拟控制台，这样就不可能(至少很困难)通过调制解调器(modem)或网络闯入系统并得到超级用户特权。
+	/etc/shadow   /etc/passwd文件的补充，早期用户的密码保存在/etc/passwd里面，后来为了安全，就将密码保存到此文件里面，/etc/passwd里用x代替密码。包括帐号名称，密码，最近改动密码的日期，密码不可被改动的天数，密码需要重新更改的天数，密码需要更改期限前的警告天数，密码过期后的帐号宽限时间，帐号失效日期等信息。在安装了影子(shadow)口令软件的系统上的影子口令文件。影子口令文件将/etc/passwd文件中的加密口令移动到/etc/shadow中，而后者只对超级用户(root)可读。这使破译口令更困难，以此增加系统的安全性。
+	/etc/shells     列出可以使用的shell，chsh命令允许用户在本文件指定范围内改变登录的shell。提供一台机器ftp服务的服务进程ftpd检查用户shell是否列在/etc/shells文件中，如果不是，将不允许该用户登录。 
 	/etc/skel/			      包含新账户的默认环境文件
-	/etc/ssh/		          存储 SSH 服务配置文件
+	/etc/ssh/		          存储SSH服务配置文件
 	/etc/sysconfig/
 	   	/etc/sysconfig/init		文件中的参数指定了系统在引导过程中的外观和体验,关于/etc/sysconfig/目录详见：http://blog.chinaunix.net/uid-793704-id-2545546.html
-		/etc/sysconfig/network6	     简单的网络配置内容
+		/etc/sysconfig/network	     简单的网络配置内容
 	   	/etc/sysconfig/network-scripts/	  存储关于网络配置的脚本文件
 		   	/etc/sysconfig/network-scripts/ifcg-lo		回环地址信息
    	/etc/sysctl.conf 	一个允许改变正在运行中的Linux系统的接口，它包含一些TCP/IP堆栈和虚拟内存系统的高级选项，修改内核参数永久生效。也就是说/proc/sys下内核文件与配置文件sysctl.conf中变量存在着对应关系。
-   	/etc/termcap    终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。这样，多数的程序可以在多数终端上运行。 
+   	/etc/termcap    终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap中查找要做的工作的正确序列。这样，多数的程序可以在多数终端上运行。 
    	/etc/xinetd.conf	保存 xinetd 服务的通用配置
-	/etc/xinetd.d/		      里面的每个文件都为 xinetd 指定一个要管理的特点服务
+	/etc/xinetd.d/		里面的每个文件都为 xinetd 指定一个要管理的特点服务
 	/etc/yum/
 		/etc/yum/pluginconf.d/	  关于 yum 文件的配置
 	/etc/yum.repos.d/		  里面的配置文件用来连接系统和实际库
