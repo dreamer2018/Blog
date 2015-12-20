@@ -73,14 +73,18 @@
 ####/etc/ 系统主要的配置文件存放目录
 	/etc/目录存放着各种系统配置文件，其中包括了用户信息文件/etc/passwd，系统初始化文件/etc/rc等。linux正是这些文件才得以正常地运行。
 	
+	/etc/at.allow 		写在这个文件里面的用户才能使用at,没有在这个文件里面的则不可以使用at(即使没有写在at.deny里面)
+	/etc/at.deny		写在这个文件里面的用户不能使用at，没有写在这个文件里面的用户则可以使用at,如果at.allow和at.deny两文件都不存在，则只有root可以使用at
 	/etc/auto.master	/misc/目录的配置文件
    	/etc/auto.misc	    自动挂载器autofs的配置文件，关于autofs详见：http://blog.csdn.net/m582445672/article/details/7885477
    	/etc/auto.net	   查看和读取共享的 HFS 目录
    	/etc/auto.smb  	   在不需要用户名和口令的共享目录起作用
    	/etc/auto.home	   设置共享目录相关文件
    	/etc/bashrc	       用于系统范围内的别名和函数
+	/etc/cron.allow 	将可以使用crontab的账号写入其中，若不在这个文件内的用户则不可以使用crontab	
+	/etc/cron.deny		将不可以使用crontab的账号写入其中，若不在这个文件内的用户则可以使用crontab
    	/etc/cron.d	
-	/etc/crontab       cron 是一个可以用来根据时间、日期、月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
+	/etc/crontab       cron 是一个可以用来根据时间、日期、bu月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
 	/etc/fdprm         软盘参数表，用以说明不同的软盘格式。可用setfdprm 进行设置。更多的信息见setfdprm的帮助页。
 	/etc/fstab         在引导期间挂载的文件系统的标准配置文件,指定启动时需要自动安装的文件系统列表。也包括用swapon -a启用的swap区的信息。
 	/etc/group	  用户组基本信息，包括用户组名称，GID，用户组支持的用户帐号等信息
