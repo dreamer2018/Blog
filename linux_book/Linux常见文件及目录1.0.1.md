@@ -84,7 +84,7 @@
 	/etc/cron.allow 	将可以使用crontab的账号写入其中，若不在这个文件内的用户则不可以使用crontab	
 	/etc/cron.deny		将不可以使用crontab的账号写入其中，若不在这个文件内的用户则可以使用crontab
    	/etc/cron.d	
-	/etc/crontab       cron 是一个可以用来根据时间、日期、bu月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
+	/etc/crontab       cron 是一个可以用来根据时间、日期、月份、星期的组合来调度对重复任务的执行的守护进程，而此文件就是其配置文件。内容详见：http://blog.csdn.net/foxman209/article/details/6759920
 	/etc/fdprm         软盘参数表，用以说明不同的软盘格式。可用setfdprm 进行设置。更多的信息见setfdprm的帮助页。
 	/etc/fstab         在引导期间挂载的文件系统的标准配置文件,指定启动时需要自动安装的文件系统列表。也包括用swapon -a启用的swap区的信息。
 	/etc/group	  用户组基本信息，包括用户组名称，GID，用户组支持的用户帐号等信息
